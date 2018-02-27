@@ -45,6 +45,10 @@ final class ReplaceOperation extends AbstractOperation
             if (!array_key_exists($id, $sourceMessages)) {
                 $this->messages[$domain]['obsolete'][$id] = $message;
             }
+            // If $message is empty mark as new
+            elseif (empty($message)) {
+                $this->messages[$domain]['new'][$id] = $message;
+            }
         }
 
         foreach ($sourceMessages as $id => $message) {

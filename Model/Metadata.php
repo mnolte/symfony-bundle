@@ -66,6 +66,38 @@ final class Metadata
     }
 
     /**
+     * @return null|string
+     */
+    public function getDesc()
+    {
+        $notes = $this->getAllInCategory('desc');
+        foreach ($notes as $note) {
+            if (isset($note['content'])) {
+                return $note['content'];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the extracted translation if any.
+     *
+     * @return null|string
+     */
+    public function getTranslation()
+    {
+        $notes = $this->getAllInCategory('translation');
+        foreach ($notes as $note) {
+            if (isset($note['content'])) {
+                return $note['content'];
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @return bool
      */
     public function isApproved()

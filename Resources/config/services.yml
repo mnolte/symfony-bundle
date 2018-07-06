@@ -32,7 +32,7 @@ services:
   php_translation.importer:
     public: true
     class: Translation\Bundle\Service\Importer
-    arguments: ["@php_translation.extractor", "@twig"]
+    arguments: ["@php_translation.extractor", "@twig", "%php_translation.default_locale%"]
 
   php_translation.cache_clearer:
     public: true
@@ -53,8 +53,6 @@ services:
     class: Translation\SymfonyStorage\Dumper\XliffDumper
     tags:
       - { name: translation.dumper, alias: xlf, legacy-alias: xliff }
-    calls:
-      - [setBackup, [false]]
 
   php_translation.catalogue_counter:
     public: true
